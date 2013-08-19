@@ -1,0 +1,26 @@
+#!/usr/bin/zsh
+
+md5sum ~/.cvsrc > ~/rhub.files
+md5sum ~/bin/* >> ~/rhub.files
+md5sum ~/.screenrc >> ~/rhub.files
+md5sum ~/.vimrc >> ~/rhub.files
+md5sum ~/.zshrc >> ~/rhub.files
+md5sum ~/.vim/plugin/* >> ~/rhub.files
+
+#cd ~
+#rm -rf PP1FILES
+#mkdir PP1FILES
+#cd PP1FILES
+#scp pp1:.cvsrc cvsrc
+#scp pp1:.screenrc screenrc
+#scp pp1:.vimrc vimrc
+#scp pp1:.zshrc zshrc
+
+
+ssh pp1 "md5sum ~/.cvsrc" > ~/pp1.files
+ssh pp1 "md5sum ~/bin/*" >> ~/pp1.files
+ssh pp1 "md5sum ~/.screenrc" >> ~/pp1.files
+ssh pp1 "md5sum ~/.vimrc" >> ~/pp1.files
+ssh pp1 "md5sum ~/.zshrc" >> ~/pp1.files
+ssh pp1 "md5sum ~/.vim/plugin/*" >> ~/pp1.files
+

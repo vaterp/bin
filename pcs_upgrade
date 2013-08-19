@@ -1,0 +1,36 @@
+#!/bin/bash
+
+echo "Downloading PP RPMs"
+
+wget  -l1 -r -A "idirect-core_libs-0*.rpm"  http://components.eng.idirect.net/Core_Libs/develop/latest/RPMS/ -nd
+wget  -l1 -r -A "idirect-icd_api-0*.rpm"  http://components.eng.idirect.net/ICD_API/develop/latest/RPMS/ -nd
+wget  -l1 -r -A "idirect-ota_libs-0*.rpm"  http://components.eng.idirect.net/OTA_Libs/develop/latest/RPMS/ -nd
+wget  -l1 -r -A "idirect-pcs_lib-0*.rpm"  http://components.eng.idirect.net/PCS_Lib/develop/latest/RPMS/ -nd
+wget  -l1 -r -A "idirect-pp_lcc-0*.rpm"  http://components.eng.idirect.net/PP_LCC/develop/latest/RPMS/ -nd
+wget  -l1 -r -A "idirect-pp_na-0*.rpm"  http://components.eng.idirect.net/PP_NA/develop/latest/RPMS/ -nd
+wget  -l1 -r -A "idirect-pp_da-0*.rpm"  http://components.eng.idirect.net/PP_DA/develop/latest/RPMS/ -nd
+wget  -l1 -r -A "idirect-pp_iac-0*.rpm"  http://components.eng.idirect.net/PP_IAC/develop/latest/RPMS/ -nd
+wget  -l1 -r -A "idirect-pp_tun-0*.rpm"  http://components.eng.idirect.net/PP_TUN/develop/latest/RPMS/ -nd
+wget  -l1 -r -A "idirect-pp_tpa-0*.rpm"  http://components.eng.idirect.net/PP_TPA/develop/latest/RPMS/ -nd
+wget  -l1 -r -A "idirect-pp_acq-0*.rpm"  http://components.eng.idirect.net/PP_ACQ/develop/latest/RPMS/ -nd
+wget  -l1 -r -A "idirect-pp_ag-0*.rpm"  http://components.eng.idirect.net/PP_AG/develop/latest/RPMS/ -nd
+wget  -l1 -r -A "idirect-pp_sr-0*.rpm"  http://components.eng.idirect.net/PP_SR/develop/latest/RPMS/ -nd
+wget  -l1 -r -A "idirect-pp_gsr-0*.rpm"  http://components.eng.idirect.net/PP_GSR/develop/latest/RPMS/ -nd
+wget  -l1 -r -A "idirect-pp_gsc-0*.rpm"  http://components.eng.idirect.net/PP_GSC/develop/latest/RPMS/ -nd
+wget  -l1 -r -A "idirect-pp_geo-0*.rpm"  http://components.eng.idirect.net/PP_GEO/develop/latest/RPMS/ -nd
+#wget  -l1 -r -A "idirect-lwip-0*.rpm"    http://components.eng.idirect.net/Pioneer/x86_64/develop/0.0.0.5-latest/RPMS/ -nd
+wget  -l1 -r -A "idirect-metaswitch-0*.rpm"  http://components.eng.idirect.net/Metaswitch/develop/latest/RPMS/ -nd
+wget  -l1 -r -A "idirect-pp_rt-0*.rpm"  http://components.eng.idirect.net/PP_RT/develop/latest/RPMS/ -nd
+wget  -l1 -r -A "idirect-pp_tun-0*.rpm"  http://components.eng.idirect.net/PP_TUN/develop/latest/RPMS/ -nd
+
+
+
+echo "Stopping all processes (via stopall)"
+/usr/bin/idirect/stopall.sh
+
+RPMS="idirect-core*.rpm idirect-icd*.rpm idirect-ota*.rpm idirect-lwip*.rpm metaswitch*.rpm idirect-pcs*.rpm idirect-pp*.rpm"
+
+echo "Installing RPMS"
+yum localinstall -y $RPMS
+
+rm -f *.rpm

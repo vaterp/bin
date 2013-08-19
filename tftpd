@@ -1,0 +1,14 @@
+#!/bin/bash
+if [ `whoami` != "root" ]; then
+	echo "Must be root"
+	exit
+fi
+
+if [ ! -d /tmp/tftpboot ]; then
+	mkdir /tmp/tftpboot
+	chown nobody:nobody /tmp/tftpboot
+	chmod a+rwx /tmp/tftpboot
+fi
+
+nohup  /sbin/in.tftpd --foreground -vvvv -p -c -s /tmp/tftpboot &
+tail -f /var/log/messages | grep in.tftpd

@@ -1,0 +1,76 @@
+#!/usr/bin/perl
+$dir=`pwd`;
+chomp $dir;
+my $x='';
+$x = 'hpb shared embedded scripts' if ($dir =~ m#.*/(phoenix|eserver)/iDirect$#);
+$x = 'hpb shared third_party' if ($dir =~ m#.*/8.0-branch/(phoenix|eserver)/iDirect$#);
+$x = 'hpb shared third_party' if ($dir =~ m#.*/vzb/(phoenix|eserver)/iDirect$#);
+$x = 'hpb shared third_party' if ($dir =~ m#.*/bgp/(phoenix|eserver)/iDirect$#);
+$version = "trunk"  if ($dir =~ m!/trunk/!);
+$skipsync = "yes";
+
+print ("cvs status $x\n");
+open (DATA,"cvs status $x 2>/dev/null |") or die "Couldnt start cvs status";
+print "\n";
+
+$dir =~ s!.*/work/.*/(phoenix|eserver)/!!;
+
+while (<DATA>)
+{
+
+# The only lines we care about are the line with STATUS and FULL filename
+	if (/^File: /)
+	{
+		$state = $_;
+		$state =~ s/.*Status: //;
+	}
+	if (/^\s+Repository/)
+	{
+		$file = $_;
+		next if ($state =~ /Up-to-date/); #Dont print out uptodate guys
+
+		#print "FILE: $file";
+
+		$file =~ s!.*repos/netmodem/!!;
+		$file =~ s/,v//;
+		$file =~ s/$dir\///;
+
+		next if ($file =~ /\.opt$/);
+
+		if ($state =~ /Needs/)
+		{
+			print "\e[32mNP\t$file\e[0m";
+			next;
+		}
+		if ($state =~ /Locally/)
+		{	# Skip NRDSIM.opt and cvs_archive.bat because they will always be LM
+			print "\e[39mLM\t$file\e[0m" if ($file !~ /(nrdsim.opt|cvs_archive.bat|\.cvsignore)$/);
+			next;
+		}
+		if ($state =~ /Entry/)
+		{
+			print "\e[34mEI\t$file\e[0m";
+			next;
+		}
+
+		#Now we have another special case lets look at as they SHOW up.
+		print "****$state\t\t\t $file";
+	}
+}
+if ($skipsync eq "yes")
+{
+	exit;
+}
+if ($version ne "trunk")
+{
+	print ("Press any key to sync_shared_files");
+	read STDIN,$x,1;
+}
+else
+{
+	print ("Running sync_shared_files...\r");
+}
+`pwd` =~ /(.*\/iDirect)(\/.*)?/;
+my $dir = $1;
+die  "Cannot find iDirect root\n" if (! defined $dir or ! -d $dir);
+system ("$dir/scripts/sync_shared_files.pl");

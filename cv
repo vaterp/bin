@@ -1,0 +1,21 @@
+#!/usr/bin/perl
+$dir=`pwd`;
+chomp $dir;
+my $x='';
+$x = $dir;
+if ($x =~ m!/bgp/!)
+{
+	$x =~ s!/bgp/!/8.0-branch/!;
+}
+elsif ($x =~ m!/8.0-branch/!)
+{
+	$x =~ s!/8.0-branch/!/bgp/!;
+}
+else 
+{
+	die "Not in a version'd path";
+}
+
+print "cp $x/@ARGV[0] .\n";
+print `cp $x/@ARGV[0] .`;
+

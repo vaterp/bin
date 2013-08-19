@@ -1,0 +1,58 @@
+#!/usr/bin/perl
+$dir=`pwd`;
+chomp $dir;
+my $x='';
+$x = 'hpb shared scripts' if ($dir =~ m#.*/iDirect$#);
+$x = 'hpb shared third_party' if ($dir =~ m#.*/vzb/iDirect$#);
+
+print ("cvs status $x\n");
+open (DATA,"cvs status $x 2>/dev/null |") or die "Couldnt start cvs status";
+print "\n";
+
+#print "$dir\n";
+
+#$dir =~ s!/home/bsnyder/work/vzb!!;
+#$dir =~ s!.*/work/.*/(phoenix|eserver)/!!;
+
+#print "$dir\n";
+
+while (<DATA>)
+{
+
+# The only lines we care about are the line with STATUS and FULL filename
+    if (/^File: /)
+    {
+	$state = $_;
+	$state =~ s/.*Status: //;
+    }
+    if (/^\s+Repository/)
+    {
+	$file = $_;
+	next if ($state =~ /Up-to-date/); #Dont print out uptodate guys
+
+	$file =~ s!.*repos/!!;
+	$file =~ s/,v//;
+	$file =~ s/$dir\///;
+
+	next if ($file =~ /\.opt$/);
+	
+	if ($state =~ /Needs/)
+	{
+	  print "\e[32mNP\t$file\e[0m";
+	  next;
+	}
+	if ($state =~ /Locally/)
+	{	# Skip NRDSIM.opt and cvs_archive.bat because they will always be LM
+	  print "\e[39mLM\t$file\e[0m" if ($file !~ /(nrdsim.opt|cvs_archive.bat|\.cvsignore)$/);
+	  next;
+	}
+	if ($state =~ /Entry/)
+	{
+	  print "\e[34mEI\t$file\e[0m";
+	  next;
+	}
+
+	#Now we have another special case lets look at as they SHOW up.
+	print "****$state\t\t\t $file";
+      }
+}

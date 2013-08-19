@@ -1,0 +1,12 @@
+#! /bin/bash
+
+x=/home/bsnyder/work
+
+cd $x
+taglist=`find . -name iDirect -type d -maxdepth 3` 
+for DIR in $taglist
+do
+	cd $DIR
+	tagme
+	cd $x
+done

@@ -1,0 +1,11 @@
+#!/usr/bin/perl
+$dir=`pwd`;
+chomp $dir;
+my $x='';
+
+$x = 'hpb shared third_party' if ($dir =~ m!/iDirect$!);
+$x = '' if ($dir =~ m!/trunk/eserver/iDirect$!);
+$x = "@ARGV" if (scalar @ARGV > 0);
+
+print ("cvs up $x 2>/dev/null\n");
+system("cvs up $x 2>/dev/null");

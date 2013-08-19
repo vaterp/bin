@@ -1,0 +1,9 @@
+#!/usr/bin/zsh
+
+# Really i want to check CVS/Tag to dynamically get the branch of the log i want, but until then just hardocding to NetModem-13_0_99-branch
+
+
+
+cvs log -rNetModem-13_0_99-branch $*
+
+

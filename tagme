@@ -1,0 +1,9 @@
+#! /bin/bash
+
+#Make a nice fresh TAGS file everytime this is executed.  
+cd $id
+rm -rf tags
+
+#/usr/bin/ctags --extra=+fq -R --exclude='shared/tools/*' --exclude='Makefile' --exclude='*/dump_socket/*'  --exclude='*/saa/*' --exclude='hpb/drivers/*' --exclude='*/enc/*' --exclude='*/broadcast*'  --exclude='*/aggronator/*' --exclude='*/remote_handler/*' --exclude='*/ll/*' --exclude='*/network/*' --exclude='*/sar/*' --exclude='hpb/drivers/*' --exclude='hpb/tools/*' --exclude='hpb/test/*' --exclude='hpb/script/*' hpb shared third_party/dcl third_party/lwip
+/usr/bin/ctags --extra=+fq -R --exclude='shared/tools/*' --exclude='Makefile' --exclude='*/dump_socket/*'  --exclude='*/saa/*' --exclude='hpb/drivers/*' --exclude='*/enc/*' --exclude='*/broadcast*'  --exclude='*/aggronator/*' --exclude='*/network/*' --exclude='*/sar/*' --exclude='hpb/drivers/*' --exclude='hpb/tools/*' --exclude='hpb/test/*' --exclude='hpb/script/*' hpb shared third_party/dcl third_party/lwip
+

@@ -1,0 +1,13 @@
+#! /bin/bash
+
+x=/home/bsnyder/work
+
+cd $x
+taglist=`find . -name iDirect -type d`
+for DIR in $taglist
+do
+	cd $DIR
+	rm -rf tags
+	ctags --extra=+fq -R --exclude='shared/tools/*' --exclude='Makefile' --exclude='*/tunnel/*' --exclude='*/dump_socket/*' --exclude='*/crtp/*' --exclude='*/gre/*' --exclude='*/pad/*' --exclude='*/enc/*' --exclude='*/broadcast*' --exclude='*/compression/*' --exclude='*/aggronator/*' --exclude='*/remote_handler/*' --exclude='*/ll/*' --exclude='*/network/*' --exclude='*/sar/*'  hpb/saa hpb/lib/protocol shared
+	cd $x
+done

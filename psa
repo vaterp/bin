@@ -1,0 +1,6 @@
+ps -fu bsnyder | grep -v '\(^UID\|xterm\|screen\|SCREEN\|multi-gnome\|zsh\|ps -fu\|vi\|mgt-pty-helper\|/home/bsnyder/bin/psa\)'
+ps -fu root    | grep -w  na | grep -v grep
+ps -fu quagga  | grep -v '^UID'
+
+#alias psn="ps -fu bsnyder | grep '\(evtsvr\|nmssvr\|latsvr\|nrdsvr\)' | grep -w 1| grep -v grep;ps -fu root | grep '\(snmpd\|snmpsvr\)'"
+#ps -fu bsnyder | grep evtsvr | grep "\(^bsnyder\b[0-9*]\b\)"

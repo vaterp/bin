@@ -1,0 +1,20 @@
+#!/bin/zsh
+
+export CVSROOT=unxcvs:/devel/netmodem/cvs/repos
+export CVS_RSH=ssh
+
+x=/home/bsnyder/work
+cd $x
+touch cupall.log
+echo "Starting CUPALL:" >> cupall.log
+date >> cupall.log
+taglist=`find . -path '*/eserver/iDirect' -maxdepth 3 -print`
+for DIR in $taglist
+do
+	cd $DIR
+	echo "In $DIR"  >> cupall.log
+	~/bin/cup
+	cd $x
+done
+echo "Finished CUPALL:" >> cupall.log
+date >> cupall.log

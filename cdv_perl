@@ -1,0 +1,30 @@
+#!/usr/bin/perl
+
+use strict;
+my $x='';
+
+if (defined $ARGV[0])
+{
+	$x="/home/bsnyder/work/$ARGV[0]/eserver/iDirect";
+}
+else
+{
+	$x=`pwd`;
+	chomp $x;
+	if ($x =~ m!/5.1/!)
+	{
+		$x =~ s!/5.1/!/6.1/!;
+	}
+	elsif ($x =~ m!/6.1/!)
+	{
+		$x =~ s!/6.1/!/5.1/!;
+	}
+	else 
+	{
+		#print "Don't know where to go\n";
+		$x=`pwd`;
+		chomp $x;
+	}
+}
+
+print "$x";
