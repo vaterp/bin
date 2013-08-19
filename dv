@@ -1,0 +1,23 @@
+#!/usr/bin/perl
+$dir=`pwd`;
+chomp $dir;
+my $x='';
+$x = $dir;
+
+if ($x =~ m!/eserver/!)
+{
+	$x =~ s!/eserver/!/phoenix/!;
+}
+elsif ($x =~ m!/phoenix/!)
+{
+	$x =~ s!/phoenix/!/eserver/!;
+}
+else 
+{
+	die "Not in a target'd path";
+}
+
+
+print "diff -w @ARGV[0] $x/@ARGV[0]\n";
+print `diff -w @ARGV[0] $x/@ARGV[0]`;
+
