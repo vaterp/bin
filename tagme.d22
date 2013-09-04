@@ -1,0 +1,11 @@
+cd /home/bsnyder/pioneer
+/usr/bin/ctags --extra=+fq -R PCS_Lib ICD_API Core_Libs
+#/usr/bin/ctags --extra=+fq -R PCS_Lib ICD_API OTA_Libs Core_Libs NMS_PP_Shared
+cd PP_NA
+/usr/bin/ctags --extra=+fq -R
+cd ../PP_DA
+/usr/bin/ctags --extra=+fq -R
+cd ../PP_ACQ
+/usr/bin/ctags --extra=+fq -R
+cd ../PP_DA
+/usr/bin/ctags --extra=+fq -R

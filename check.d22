@@ -1,0 +1,27 @@
+#!/bin/bash
+
+#This script will Update all git repos below CWD and show branch info if there is an update
+#ln -s this script to your 'root' code directory and crontab it :)
+
+for i in $(find . -type d \( -path Core_Libs -o -path Test_Utils \) -prune -o -name '.git' | sed 's/\/.git//')
+do
+	
+ 	if [ "${i}" == "./Test_Utils" ]
+ 	then
+ 		continue
+ 	fi
+ 	if [ "${i}" == "./Core_Libs" ]
+ 	then
+ 		continue
+ 	fi
+
+	echo -ne "\033[1;34mChecking  $i \033[0m\t\t"
+
+	cd $i
+	git b | grep "*"
+	#git hist -1
+	#git stash list
+	#git branch -v
+	git stfu -s
+	cd ..
+done

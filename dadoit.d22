@@ -1,0 +1,6 @@
+rm pp_da
+cd ..
+make > /dev/null
+cd main
+scp pp_da pionpp:/usr/bin/idirect/pp_da.new
+
