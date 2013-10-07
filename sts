@@ -17,8 +17,12 @@ $dir =~ s!.*/work/.*/(phoenix|eserver)/!!;
 
 while (<DATA>)
 {
-
-# The only lines we care about are the line with STATUS and FULL filename
+	if (/^\? /)
+	{
+		$file = $_;
+		$file =~ s/\? //;
+		print "\e[31mNEW\t$file\e[0m";
+	}
 	if (/^File: /)
 	{
 		$state = $_;
