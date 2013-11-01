@@ -2,7 +2,7 @@
 $dir=`pwd`;
 chomp $dir;
 my $x='';
-$x = 'hpb shared embedded scripts realtime' if ($dir =~ m#.*/(phoenix|eserver)/iDirect$#);
+$x = 'hpb shared scripts realtime' if ($dir =~ m#.*/(phoenix|eserver)/iDirect$#);
 $x = 'hpb shared third_party' if ($dir =~ m#.*/8.0-branch/(phoenix|eserver)/iDirect$#);
 $x = 'hpb shared third_party' if ($dir =~ m#.*/vzb/(phoenix|eserver)/iDirect$#);
 $x = 'hpb shared third_party' if ($dir =~ m#.*/bgp/(phoenix|eserver)/iDirect$#);

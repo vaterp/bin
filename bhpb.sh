@@ -1,5 +1,7 @@
 #!/bin/zsh
 cd $h
+ echo -n "Current date is: " 
+ date
 echo "Building samnc"
 cd samnc && make > /dev/null
 echo "Building sarouter"
