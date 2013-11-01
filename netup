@@ -1,0 +1,1 @@
+nmap -sP 172.20.134.0/24 |grep -v latency
