@@ -5,10 +5,9 @@ my $x='';
 $x = $dir;
 
 
-#my $rev1="eserver" ; my $rev2="phoenix"
+my $rev1="eserver" ; my $rev2="phoenix";
 
-my $rev1="3\.1\.0\.99";
-my $rev2="3\.1\.50\.0";
+#my $rev1="3\.1\.0\.99"; my $rev2="3\.1\.50\.0";
 
 if ($x =~ m!/$rev1/!)
 {

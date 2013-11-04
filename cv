@@ -3,19 +3,24 @@ $dir=`pwd`;
 chomp $dir;
 my $x='';
 $x = $dir;
-if ($x =~ m!/bgp/!)
+
+my $rev1="eserver" ; my $rev2="phoenix";
+#my $rev1="3\.1\.0\.99"; my $rev2="3\.1\.50\.0";
+
+if ($x =~ m!/$rev1/!)
 {
-	$x =~ s!/bgp/!/8.0-branch/!;
+	$x =~ s!/$rev1/!/$rev2/!;
 }
-elsif ($x =~ m!/8.0-branch/!)
+elsif ($x =~ m!/$rev2/!)
 {
-	$x =~ s!/8.0-branch/!/bgp/!;
+	$x =~ s!/$rev2/!/$rev1/!;
 }
 else 
 {
-	die "Not in a version'd path";
+	die "Not in a target'd path";
 }
 
-print "cp $x/@ARGV[0] .\n";
-print `cp $x/@ARGV[0] .`;
+
+print "cp @ARGV[0] $x/@ARGV[0]\n";
+print `cp @ARGV[0] $x/@ARGV[0]`;
 
