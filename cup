@@ -4,7 +4,7 @@ chomp $dir;
 my $x='';
 
 $x = 'hpb shared' if ($dir =~ m!/iDirect$!);
-$x = 'hpb shared realtime' if ($dir =~ m!/3.1.0.99/.*/iDirect$!);
+$x = 'hpb shared realtime' if ($dir =~ m!/3.1.50.0/.*/iDirect$!);
 $x = 'hpb shared embedded' if ($dir =~ m!/7.0-branch/eserver/iDirect$!);
 $x = 'hpb shared third_party' if ($dir =~ m!/8.0-branch/.*/iDirect$!);
 $x = 'hpb shared third_party' if ($dir =~ m!/vzb/.*/iDirect$!);
