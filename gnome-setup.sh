@@ -15,4 +15,6 @@ sudo apt-get install vim
 sudo apt-get install vim-gnome
 sudo apt-get install xpad
 sudo apt-get install wireshark
+sudo apt-get install sysv-rc-conf
+
 sudo sed -i "/title_vertical_pad/s/value=\"[0-9]\{1,2\}\"/value=\"0\"/g" /usr/share/themes/Adwaita/metacity-1/metacity-theme-3.xml
