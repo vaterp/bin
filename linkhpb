@@ -11,4 +11,5 @@ sudo ln -s $h/sada/sada /usr/sbin/idirect/sada
 sudo ln -s $h/samnc/samnc /usr/sbin/samnc
 sudo ln -s $h/sarouter/sarouter /usr/sbin/idirect/sarouter
 sudo ln -s $h/sana/sana /usr/sbin/idirect/sana
-
+sudo ln -s $h/iac/iac /usr/sbin/idirect/iac
+sudo ln -s $h/consolidator/iCon /usr/sbin/idirect/iCon
