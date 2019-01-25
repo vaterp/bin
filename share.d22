@@ -1,4 +1,0 @@
-scp PP_DA/main/pp_da       pionpp:/usr/bin/idirect/pp_da.new
-scp PP_NA/main/pp_na       pionpp:/usr/bin/idirect/pp_na.new
-scp GQE_CTL/main/gqe_ctl pionpp:/usr/bin/idirect/gqe_ctl.new
-scp PP_ACQ/main/pp_acq   pionpp:/usr/bin/idirect/pp_acq.new
