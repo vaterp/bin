@@ -1,4 +1,9 @@
 #!/bin/bash
+
+if [ -f /tmp/${USER}.tar ]; then
+  mv /tmp/${USER}.tar /tmp/${USER}-old.tar
+fi
+
 cd /home
 tar cf /tmp/${USER}.tar --exclude ${USER}/.cache --exclude ${USER}/wsvr \
   --exclude ${USER}/.sudo_as_admin_successful \
