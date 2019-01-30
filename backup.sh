@@ -18,6 +18,13 @@ tar cf /tmp/${USER}.tar --exclude ${USER}/.cache --exclude ${USER}/wsvr \
   --exclude ${USER}/.gnuplot-wxt --exclude ${USER}/.gnuplot_history \
   ${USER}  2>/dev/null
 
+cd /tmp
+
+gpg --symmetric --cipher-algo AES256 oneweb.tar
+
+#Now I have oneweb.tar.gpg encrypted and uploadable to dropbox iff desired.
+
+
 #cd /home/${USER}/BACKUPS
 #target=`ls 2015* -td | head -1`
 #echo " tar --append --file /tmp/${USER}.tar $target" > /tmp/XXXX
