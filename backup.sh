@@ -1,5 +1,10 @@
 #!/bin/bash
 
+if [ -z "${USER}" ]; then
+  exit "No USER variable set"
+  exit 1
+fi
+
 if [ -f /tmp/${USER}.tar ]; then
   mv /tmp/${USER}.tar /tmp/${USER}-old.tar
   echo "----Files changed since last backup"
@@ -20,10 +25,12 @@ tar cf /tmp/${USER}.tar --exclude ${USER}/.cache --exclude ${USER}/wsvr \
   --exclude ${USER}/.gnuplot-wxt --exclude ${USER}/.gnuplot_history \
   ${USER}  2>/dev/null
 
-cd /tmp
-
-rm ${USER}.tar.gpg 2>/dev/null
-gpg --symmetric --cipher-algo AES256 oneweb.tar
+#Set in crontab
+if [ -z "${NOENCRYPT}" ]; then
+  cd /tmp
+  rm ${USER}.tar.gpg 2>/dev/null
+  gpg --symmetric --cipher-algo AES256 oneweb.tar
+fi
 
 #Now I have oneweb.tar.gpg encrypted and uploadable to dropbox iff desired.
 
