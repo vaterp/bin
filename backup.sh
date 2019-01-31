@@ -9,6 +9,8 @@ fi
 
 cd /home
 tar cf /tmp/${USER}.tar --exclude ${USER}/.cache --exclude ${USER}/wsvr \
+  --exclude ${USER}/.config/ibus \
+  --exclude ${USER}/.config/pulse \
   --exclude ${USER}/.sudo_as_admin_successful \
   --exclude ${USER}/.swp \
   --exclude ${USER}/.Xauthority \
@@ -20,6 +22,7 @@ tar cf /tmp/${USER}.tar --exclude ${USER}/.cache --exclude ${USER}/wsvr \
 
 cd /tmp
 
+rm ${USER}.tar.gpg 2>/dev/null
 gpg --symmetric --cipher-algo AES256 oneweb.tar
 
 #Now I have oneweb.tar.gpg encrypted and uploadable to dropbox iff desired.
