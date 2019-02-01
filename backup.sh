@@ -1,7 +1,12 @@
 #!/bin/bash
 
 if [ -z "${USER}" ]; then
-  exit "No USER variable set"
+  echo "No USER variable set"
+  exit 1
+fi
+
+if [ ! -d "/home/${USER}" ]; then
+  echo "No ${USER} directory to backup"
   exit 1
 fi
 
