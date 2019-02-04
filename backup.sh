@@ -13,12 +13,13 @@ fi
 if [ -f /tmp/${USER}.tar ]; then
   mv /tmp/${USER}.tar /tmp/${USER}-old.tar
   echo "----Files changed since last backup"
-  find ~ -newer /tmp/${USER}-old.tar | grep -v \/home\/${USER}\/.cache
+  find ~ -newer /tmp/${USER}-old.tar | grep -v \/home\/${USER}\/.cache | grep -v random_seed
   echo "----Done List"
 fi
 
 cd /home
 tar cf /tmp/${USER}.tar --exclude ${USER}/.cache --exclude ${USER}/wsvr \
+  --exclude ${USER}/.gnupg \
   --exclude ${USER}/.config/ibus \
   --exclude ${USER}/.config/pulse \
   --exclude ${USER}/.sudo_as_admin_successful \
