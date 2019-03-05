@@ -34,7 +34,7 @@ tar cf /tmp/${USER}.tar --exclude ${USER}/.cache --exclude ${USER}/wsvr \
 if [ -z "${NOENCRYPT}" ]; then
   cd /tmp
   rm ${USER}.tar.gpg 2>/dev/null
-  gpg --symmetric --cipher-algo AES256 oneweb.tar
+  gpg --symmetric --cipher-algo AES256 ${USER}.tar
 fi
 
 #Now I have oneweb.tar.gpg encrypted and uploadable to dropbox iff desired.
