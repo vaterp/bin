@@ -33,7 +33,8 @@ tar cf /tmp/${BACKUPFILE}.tar --exclude ${USER}/.cache --exclude ${USER}/wsvr \
   ${USER}  2>/dev/null
 
 #Set in crontab
-if [ -z "${NOENCRYPT}" ]; then
+if [ -v ENCRYPT ]; then
+  echo "Encrypting....."
   cd /tmp
   rm ${BACKUPFILE}.tar.gpg 2>/dev/null
   gpg --symmetric --cipher-algo AES256 ${BACKUPFILE}.tar
