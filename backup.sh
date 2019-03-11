@@ -10,15 +10,17 @@ if [ ! -d "/home/${USER}" ]; then
   exit 1
 fi
 
-if [ -f /tmp/${USER}.tar ]; then
-  mv /tmp/${USER}.tar /tmp/${USER}-old.tar
+BACKUPFILE=${USER}-${HOSTNAME}
+
+if [ -f /tmp/${BACKUPFILE}.tar ]; then
+  mv /tmp/${BACKUPFILE}.tar /tmp/${BACKUPFILE}-old.tar
   echo "----Files changed since last backup"
-  find ~ -newer /tmp/${USER}-old.tar | grep -v \/home\/${USER}\/.cache | grep -v random_seed
+  find ~ -newer /tmp/${BACKUPFILE}-old.tar | grep -v \/home\/${USER}\/.cache
   echo "----Done List"
 fi
 
 cd /home
-tar cf /tmp/${USER}.tar --exclude ${USER}/.cache --exclude ${USER}/wsvr \
+tar cf /tmp/${BACKUPFILE}.tar --exclude ${USER}/.cache --exclude ${USER}/wsvr \
   --exclude ${USER}/.gnupg \
   --exclude ${USER}/.config/ibus \
   --exclude ${USER}/.config/pulse \
@@ -32,10 +34,11 @@ tar cf /tmp/${USER}.tar --exclude ${USER}/.cache --exclude ${USER}/wsvr \
   ${USER}  2>/dev/null
 
 #Set in crontab
-if [ -z "${NOENCRYPT}" ]; then
+if [ -v ENCRYPT ]; then
+  echo "Encrypting....."
   cd /tmp
-  rm ${USER}.tar.gpg 2>/dev/null
-  gpg --symmetric --cipher-algo AES256 oneweb.tar
+  rm ${BACKUPFILE}.tar.gpg 2>/dev/null
+  gpg --symmetric --cipher-algo AES256 ${BACKUPFILE}.tar
 fi
 
 #Now I have oneweb.tar.gpg encrypted and uploadable to dropbox iff desired.
