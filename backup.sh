@@ -12,6 +12,13 @@ fi
 
 BACKUPFILE=${USER}-${HOSTNAME}
 
+#Copy some system config files I like to keep
+#cp /etc/rc.local ~/backups
+#cp /etc/hosts ~/backups
+#Get crontab backup
+#Get firefox bookmark backup
+#Get sudoers backup
+
 if [ -f /tmp/${BACKUPFILE}.tar ]; then
   mv /tmp/${BACKUPFILE}.tar /tmp/${BACKUPFILE}-old.tar
   echo "----Files changed since last backup"
